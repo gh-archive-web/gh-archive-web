@@ -37,8 +37,9 @@
     <script>
 
       const headers = {
-        'Authorization': 'Bearer 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', // What are you looking at? 🤨 Just ignore it!
+        'Authorization': 'Bearer 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',
         'Content-Type': 'application/json',
+        mode: 'cors',
       };
 
       document.getElementById('workflow-form').addEventListener('submit', function (event) {
@@ -82,7 +83,11 @@
 
         fetch('https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/workflows/go.yml/dispatches', {
           method: 'POST',
-          headers: headers,
+          headers: {
+        'Authorization': 'Bearer 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',
+        'Content-Type': 'application/json',
+        mode: 'cors',
+      },
           body: JSON.stringify({
             ref: 'main',
             inputs: { topic: topic, repo: repo, run_id: run_id },
