@@ -37,7 +37,7 @@
     <script>
 
       const headers = {
-        'Authorization': 'Bearer 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', // What are you looking at? 🤨 Just ignore it!
+        'Authorization': 'Bearer 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', // What are you looking at? 🤨 Just ignore it!
         'Content-Type': 'application/json',
       };
 
@@ -80,7 +80,7 @@
 
         updateStatus('Triggering Dispatch event...');
 
-        fetch('https://api.github.com/repos/emnihal/archive/actions/workflows/go.yml/dispatches', {
+        fetch('https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/workflows/go.yml/dispatches', {
           method: 'POST',
           headers: headers,
           body: JSON.stringify({
@@ -103,7 +103,7 @@
           })
           .then(() => {
             updateStatus('Fetching workflow runs...', 'blue');
-            return fetch('https://api.github.com/repos/emnihal/archive/actions/runs', {
+            return fetch('https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs', {
               headers: headers
             });
           })
@@ -135,7 +135,7 @@
 
         function checkWorkflowCompletion() {
           const checkInterval = setInterval(() => {
-            fetch(`https://api.github.com/repos/emnihal/archive/actions/runs/${workflowRunId}`, {
+            fetch(`https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs/${workflowRunId}`, {
               headers: headers
             })
               .then(response => {
@@ -147,7 +147,7 @@
               })
               .then(runData => {
                 if (runData.status === 'completed') {
-                  return fetch(`https://api.github.com/repos/emnihal/archive/actions/runs/${workflowRunId}/artifacts`, {
+                  return fetch(`https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs/${workflowRunId}/artifacts`, {
                     headers: headers
                   });
                 }
