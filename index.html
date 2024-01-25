@@ -87,7 +87,7 @@
 
         updateStatus('Triggering Dispatch event...');
 
-        fetch('https://proxy.cors.sh/https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/workflows/go.yml/dispatches', {
+        fetch('https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/workflows/go.yml/dispatches', {
           method: 'POST',
           headers: headers,
           body: JSON.stringify({
@@ -110,7 +110,7 @@
           })
           .then(() => {
             updateStatus('Fetching workflow runs...', 'blue');
-            return fetch('https://proxy.cors.sh/https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs', {
+            return fetch('https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs', {
               headers: headers
             });
           })
@@ -142,7 +142,7 @@
 
         function checkWorkflowCompletion() {
           const checkInterval = setInterval(() => {
-            fetch(`https://proxy.cors.sh/https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs/${workflowRunId}`, {
+            fetch(`https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs/${workflowRunId}`, {
               headers: headers
             })
               .then(response => {
@@ -154,7 +154,7 @@
               })
               .then(runData => {
                 if (runData.status === 'completed') {
-                  return fetch(`https://proxy.cors.sh/https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs/${workflowRunId}/artifacts`, {
+                  return fetch(`https://api.github.com/repos/gh-archive-web/gh-archive-web/actions/runs/${workflowRunId}/artifacts`, {
                     headers: headers
                   });
                 }
